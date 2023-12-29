@@ -223,4 +223,3 @@ Once all tests are passing and your PR has been approved, a `dbt-core` maintaine
 Sometimes, the content license agreement auto-check bot doesn't find a user's entry in its roster. If you need to force a rerun, add `@cla-bot check` in a comment on the pull request.
 
 ## Troubleshooting Tips
-
