@@ -45,7 +45,7 @@ If you are not a member of the `dbt-labs` GitHub organization, you can contribut
 
 ### dbt Labs contributors
 
-If you are a member of the `dbt-labs` GitHub organization, you will have push access to the `dbt-core` repo. Rather than forking `dbt-core` to make your changes, just clone the repository, check out a new branch, and push directly to that branch. 
+If you are a member of the `dbt-labs` GitHub organization, you will have push access to the `dbt-core` repo. Rather than forking `dbt-core` to make your changes, just clone the repository, check out a new branch, and push directly to that branch.
 
 ## Setting up an environment
 
