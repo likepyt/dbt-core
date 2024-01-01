@@ -30,14 +30,13 @@
   {% call statement('main') -%}
     {{ get_create_table_as_sql(False, intermediate_relation, sql) }}
   {%- endcall %}
-
+  begin tran;
   -- cleanup
   {% if existing_relation is not none %}
      /* Do the equivalent of rename_if_exists. 'existing_relation' could have been dropped
         since the variable was first set. */
     {% set existing_relation = load_cached_relation(existing_relation) %}
     {% if existing_relation is not none %}
-        begin tran;
         {{ adapter.rename_relation(existing_relation, backup_relation) }}
     {% endif %}
   {% endif %}
