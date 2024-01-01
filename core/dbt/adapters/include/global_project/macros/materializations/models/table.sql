@@ -37,12 +37,13 @@
         since the variable was first set. */
     {% set existing_relation = load_cached_relation(existing_relation) %}
     {% if existing_relation is not none %}
+        begin tran;
         {{ adapter.rename_relation(existing_relation, backup_relation) }}
     {% endif %}
   {% endif %}
 
   {{ adapter.rename_relation(intermediate_relation, target_relation) }}
-
+  commit;
   {% do create_indexes(target_relation) %}
 
   {{ run_hooks(post_hooks, inside_transaction=True) }}
