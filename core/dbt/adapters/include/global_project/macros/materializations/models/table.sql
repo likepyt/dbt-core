@@ -30,7 +30,8 @@
   {% call statement('main') -%}
     {{ get_create_table_as_sql(False, intermediate_relation, sql) }}
   {%- endcall %}
-  begin tran;
+  
+  {% do adapter.add_query('BEGIN TRANSACTION', auto_begin = False, abridge_sql_log=True) %}
   -- cleanup
   {% if existing_relation is not none %}
      /* Do the equivalent of rename_if_exists. 'existing_relation' could have been dropped
@@ -42,7 +43,7 @@
   {% endif %}
 
   {{ adapter.rename_relation(intermediate_relation, target_relation) }}
-  commit;
+  {% do adapter.add_query('COMMIT', auto_begin = False, abridge_sql_log=True) %}
   {% do create_indexes(target_relation) %}
 
   {{ run_hooks(post_hooks, inside_transaction=True) }}
